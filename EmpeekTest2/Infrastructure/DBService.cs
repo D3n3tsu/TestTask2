@@ -11,7 +11,8 @@ namespace EmpeekTest2.Infrastructure
 {
     public class DBService : IDBService
     {
-        string _connectionString = @"Data Source=F:\mydb.db;Version=3;New=True;";
+        string path = "";
+        string connectionString = "";
         string tblOwners = "owners";
         string tblPets = "pets";
         string colId = "id";
@@ -22,9 +23,11 @@ namespace EmpeekTest2.Infrastructure
 
         public DBService()
         {
+            path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            connectionString = @"Data Source=" + path + @"\testdb.db;Version=3;New=True;";
             try
             {
-                using (SQLiteConnection con = new SQLiteConnection(_connectionString))
+                using (SQLiteConnection con = new SQLiteConnection(connectionString))
                 {
                     con.Open();
                     using (SQLiteTransaction tr = con.BeginTransaction())
@@ -50,7 +53,7 @@ namespace EmpeekTest2.Infrastructure
 
         public async Task CreateNewOwner(string newOwner)
         {
-            using (SQLiteConnection con = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionString))
             {
                 con.Open();
                 using (SQLiteCommand cmnd = con.CreateCommand())
@@ -70,7 +73,7 @@ namespace EmpeekTest2.Infrastructure
 
         public async Task CreateNewPet(string petName, int ownerId)
         {
-            using (SQLiteConnection con = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionString))
             {
                 con.Open();
                 using (SQLiteCommand cmnd = con.CreateCommand())
@@ -90,7 +93,7 @@ namespace EmpeekTest2.Infrastructure
 
         public async Task DeleteOwner(int ownerId)
         {
-            using (SQLiteConnection con = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionString))
             {
                 con.Open();
                 using (SQLiteTransaction tr = con.BeginTransaction())
@@ -116,7 +119,7 @@ namespace EmpeekTest2.Infrastructure
 
         public async Task DeletePet(int petId)
         {
-            using (SQLiteConnection con = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionString))
             {
                 con.Open();
                 using (SQLiteCommand cmnd = con.CreateCommand())
@@ -137,7 +140,7 @@ namespace EmpeekTest2.Infrastructure
         public async Task<IEnumerable<Owner>> GetOwners()
         {
             List<Owner> owners = new List<Owner>();
-            using (SQLiteConnection con = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionString))
             {
                 con.Open();
                 /*select owners.id, owner_name, count(pets.id) as number_of_pets
@@ -174,7 +177,7 @@ namespace EmpeekTest2.Infrastructure
         public async Task<IEnumerable<Pet>> GetPets(int ownerId)
         {
             List<Pet> pets = new List<Pet>();
-            using (SQLiteConnection con = new SQLiteConnection(_connectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionString))
             {
                 con.Open();
                 using (SQLiteCommand cmnd = con.CreateCommand())

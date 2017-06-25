@@ -24,11 +24,7 @@
                     .then(function (responce) {
                         //success
                         
-                        angular.copy(responce.data.Owners, vm.owners);
-                        vm.totalCount = responce.data.NumberOfOwners;
-                        vm.pages = vm.totalCount < 3 ? [] : new Array(Math.ceil(vm.totalCount / 3) - 1);
-                        vm.message = '';
-                        vm.GoToPage(vm.currentPage);
+                        ApplyData(responce);
                     },
                     function () {
                         //failure
@@ -43,12 +39,10 @@
                 $http.post('api/owner', data)
                     .then(function (responce) {
                         //success
+
+                        //clearing input field
                         vm.newOwner = '';
-                        angular.copy(responce.data.Owners, vm.owners);
-                        vm.totalCount = responce.data.NumberOfOwners;
-                        vm.pages = vm.totalCount < 3 ? [] : new Array(Math.ceil(vm.totalCount / 3) - 1);
-                        vm.GoToPage(vm.currentPage);
-                        vm.message = '';
+                        ApplyData(responce);
                     },
                     function (data) {
                         //failure
@@ -92,6 +86,14 @@
              
             vm.GetOwners();
             vm.GoToPage(vm.currentPage);
+
+            function ApplyData(responce) {
+                angular.copy(responce.data.Owners, vm.owners);
+                vm.totalCount = responce.data.NumberOfOwners;
+                vm.pages = vm.totalCount < 3 ? [] : new Array(Math.ceil(vm.totalCount / 3) - 1);
+                vm.message = '';
+                vm.GoToPage(vm.currentPage);
+            }
         }
 
 

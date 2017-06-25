@@ -29,12 +29,7 @@
                     .then(function (responce) {
                         //success
 
-                        angular.copy(responce.data.Pets, vm.pets);
-                        vm.totalCount = responce.data.NumberOfPets;
-                        console.log(vm.totalCount);
-                        vm.pages = vm.totalCount < 3 ? [] : new Array(Math.ceil(vm.totalCount / 3) - 1);
-                        vm.message = '';
-                        vm.GoToPage(vm.currentPage);
+                        ApplyData(responce);
                     },
                     function () {
                         //failure
@@ -52,11 +47,7 @@
 
                         //clearing input field
                         vm.newPet = '';
-                        angular.copy(responce.data.Pets, vm.pets);
-                        vm.totalCount = responce.data.NumberOfPets;
-                        vm.pages = vm.totalCount < 3 ? [] : new Array(Math.ceil(vm.totalCount / 3) - 1);
-                        vm.message = '';
-                        vm.GoToPage(vm.currentPage);
+                        ApplyData(responce);
                     },
                     function (data) {
                         //failure
@@ -100,5 +91,14 @@
 
             vm.GetPets();
             vm.GoToPage(vm.currentPage);
+
+
+            function ApplyData(responce) {
+                angular.copy(responce.data.Pets, vm.pets);
+                vm.totalCount = responce.data.NumberOfPets;
+                vm.pages = vm.totalCount < 3 ? [] : new Array(Math.ceil(vm.totalCount / 3) - 1);
+                vm.message = '';
+                vm.GoToPage(vm.currentPage);
+            }
         }
 })();
