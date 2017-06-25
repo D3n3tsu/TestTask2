@@ -13,6 +13,7 @@ namespace EmpeekTest2.Infrastructure
     {
         string path = "";
         string connectionString = "";
+        //this strings are a bit messy to read but prevent errors with table queries
         string tblOwners = "owners";
         string tblPets = "pets";
         string colId = "id";
@@ -23,6 +24,7 @@ namespace EmpeekTest2.Infrastructure
 
         public DBService()
         {
+            //create database file on users desktop
             path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             connectionString = @"Data Source=" + path + @"\testdb.db;Version=3;New=True;";
             try

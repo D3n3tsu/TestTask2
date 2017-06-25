@@ -21,6 +21,7 @@
             <tbody>
                 <tr>
                     <td>{{ vm.first.Name }}
+                        <!--disabled buttons prevent table rows from collapsing when empty-->
                         <button class="delButton"  ng-disabled="!vm.first.Id" 
                                 ng-click="vm.DeletePet(vm.first.Id)">Delete</button>
                     </td>

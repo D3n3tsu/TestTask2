@@ -6,20 +6,33 @@
 
         function PetsController($http, $routeParams) {
             var vm = this;
+
+            //getting owners data from url
             vm.ownerId = $routeParams.owner;
             vm.ownerName = $routeParams.ownerName;
+
+            //if owners name ends with letter s we don't apply s-edning to it
             if (vm.ownerName.length > 0 && vm.ownerName.slice(-1) !== 's') {
                 vm.ownerName += '\'s';
             } else {
-             vm.ownerName += '\'';}
+                vm.ownerName += '\'';
+            }
+
+            //this variables are my alternative to a ng-repeat command
+            //they allow to maintain three-rows table even when there is not enough items to show on page
             vm.first = {};
             vm.second = {};
             vm.third = {};
+
+            //message to show while operations are in process or failed
             vm.message = '';
+
             vm.totalCount = 0;
             vm.pets = [];
+
             //Pages array must be one page smaller then number of pages. First page is always shown
             vm.pages = [];
+
             vm.currentPage = 1;
 
             vm.GetPets = GetPets;
@@ -60,6 +73,7 @@
             vm.GoToPage = GoToPage;
             function GoToPage(page) {
                 vm.currentPage = page;
+                //clear variables
                 vm.first = {};
                 vm.second = {};
                 vm.third = {};
@@ -68,7 +82,10 @@
                 var thirdIdx = (vm.currentPage - 1) * 3 + 2;
                 if (firstIdx < vm.totalCount)
                     vm.first = vm.pets[firstIdx];
+
+                //if there is no first item on the current page go to previous page
                 if (vm.currentPage !== 1 && firstIdx === vm.totalCount) vm.GoToPage(page - 1);
+
                 if (secondIdx < vm.totalCount)
                     vm.second = vm.pets[secondIdx];
                 if (thirdIdx < vm.totalCount)
@@ -92,7 +109,7 @@
             vm.GetPets();
             vm.GoToPage(vm.currentPage);
 
-
+            //function to wrap all data processing in get or post actions
             function ApplyData(responce) {
                 angular.copy(responce.data.Pets, vm.pets);
                 vm.totalCount = responce.data.NumberOfPets;
