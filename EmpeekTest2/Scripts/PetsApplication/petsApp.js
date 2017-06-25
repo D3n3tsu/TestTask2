@@ -1,8 +1,8 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('petsApp', ['ngRoute']).controller('testctrl', testctrl)
-        .config(function ($routeProvider, $locationProvider) {
+    angular.module('petsApp', ['ngRoute'])
+        .config(function ($routeProvider) {
              
             $routeProvider.when("/owners", {
                 controller: "OwnersController",
@@ -10,7 +10,7 @@
                 templateUrl: "/public/templates/Owners.Controller.html"
             });
 
-            $routeProvider.when("/:owner/pets", {
+            $routeProvider.when("/:owner/pets/:ownerName", {
                 controller: "PetsController",
                 controllerAs: "vm",
                 templateUrl: "/public/templates/Pets.Controller.html"
@@ -21,7 +21,5 @@
             });
         });
 
-    function testctrl($scope) {
-        $scope.asd = 10;
-    }
+    
 })();

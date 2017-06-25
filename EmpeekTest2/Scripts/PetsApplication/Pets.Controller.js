@@ -7,6 +7,11 @@
         function PetsController($http, $routeParams) {
             var vm = this;
             vm.ownerId = $routeParams.owner;
+            vm.ownerName = $routeParams.ownerName;
+            if (vm.ownerName.length > 0 && vm.ownerName.slice(-1) !== 's') {
+                vm.ownerName += '\'s';
+            } else {
+             vm.ownerName += '\'';}
             vm.first = {};
             vm.second = {};
             vm.third = {};

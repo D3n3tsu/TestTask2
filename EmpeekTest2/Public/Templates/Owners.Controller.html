@@ -19,7 +19,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><a class="owner" href="#!/{{vm.first.Id}}/pets">{{ vm.first.Name }}</a></td>
+                    <td><a class="owner" href="#!/{{vm.first.Id}}/pets/{{vm.first.Name}}">
+                        {{ vm.first.Name }}</a></td>
                     <td>
                         {{ vm.first.NumberOfPets }}
                         <button class="delButton" ng-disabled="!vm.first.Id"
@@ -27,7 +28,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><a class="owner" href="#!/{{vm.second.Id}}/pets"> {{ vm.second.Name }}</a></td>
+                    <td><a class="owner" href="#!/{{vm.second.Id}}/pets/{{ vm.second.Name }}"> 
+                        {{ vm.second.Name }}</a></td>
                     <td>
                         {{ vm.second.NumberOfPets }}
                         <button class="delButton" ng-disabled="!vm.second.Id" 
@@ -35,7 +37,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><a class="owner" href="#!/{{vm.third.Id}}/pets"> {{ vm.third.Name }}</a></td>
+                    <td><a class="owner" href="#!/{{vm.third.Id}}/pets/{{ vm.third.Name }}"> 
+                        {{ vm.third.Name }}</a></td>
                     <td>
                         {{ vm.third.NumberOfPets }}
                         <button class="delButton" ng-disabled="!vm.third.Id" 
