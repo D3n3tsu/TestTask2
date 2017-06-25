@@ -1,5 +1,6 @@
 ﻿using EmpeekTest2.Infrastructure;
 using EmpeekTest2.Models;
+using EmpeekTest2.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +23,28 @@ namespace EmpeekTest2.Controllers
         }
 
         // GET api/owner
-        public async Task<JsonResult<IEnumerable<Owner>>> Get()
+        public async Task<JsonResult<OwnersViewModel>> Get()
         {
-            return Json(await _DBservice.GetOwners());
+            IEnumerable<Owner> owners = await _DBservice.GetOwners();
+            return Json(new OwnersViewModel
+            {
+                NumberOfOwners = owners.Count(),
+                Owners = owners
+            });
         }
         
 
         // POST api/owner
-        public async Task<JsonResult<IEnumerable<Owner>>> Post([FromBody]string ownerName)
+        [HttpPost]
+        public async Task<JsonResult<OwnersViewModel>> Post([FromBody]OwnerPostViewModel data)
         {
-            await _DBservice.CreateNewOwner(ownerName);
-            return Json(await _DBservice.GetOwners());
+            await _DBservice.CreateNewOwner(data.newOwner);
+            IEnumerable<Owner> owners = await _DBservice.GetOwners();
+            return Json(new OwnersViewModel
+            {
+                NumberOfOwners = owners.Count(),
+                Owners = owners
+            });
         }
 
 

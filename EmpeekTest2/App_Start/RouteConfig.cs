@@ -13,6 +13,14 @@ namespace EmpeekTest2
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.RouteExistingFiles = true;
+
+            routes.MapRoute(
+                name: "staticFileRoute",
+                url: "Public/{*file}",
+                defaults: new { controller = "Home", action = "HandleStatic" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

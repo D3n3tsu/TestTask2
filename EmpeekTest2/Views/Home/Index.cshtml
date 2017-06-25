@@ -1,1 +1,31 @@
-﻿
+﻿@{ 
+    ViewBag.Title = "Home";
+}
+
+<base target="/" />
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/angular-route.min.js"></script>
+
+
+<script src="~/Scripts/PetsApplication/petsApp.js"></script>
+<script src="~/Scripts/PetsApplication/Pets.Controller.js"></script>
+<script src="~/Scripts/PetsApplication/pagination.directive.js"></script>
+<script src="~/Scripts/PetsApplication/Owners.Controller.js"></script>
+
+<div ng-app="petsApp">
+
+    <ng-view></ng-view>
+
+</div>
+
+<style>
+    a{
+        cursor: pointer;
+    }
+    a.currentPage {
+        font-size:large;
+        color: black;
+        text-decoration: none;
+    }
+</style>

@@ -1,0 +1,67 @@
+﻿<div class="text-center">
+    <h1>All Users</h1>
+
+    <div>
+        <input ng-model="vm.newOwner" placeholder="Enter Pet Owner's Name" />
+        <button ng-disabled="!vm.newOwner" ng-click="vm.AddOwner()">Add</button>
+    </div>
+    <hr />
+    
+
+    <div class="col-md-6 col-sm-6 col-lg-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 text-left">
+        <div>Total count: {{ vm.totalCount }}</div>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Pets Count</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a class="owner" href="#!/{{vm.first.Id}}/pets">{{ vm.first.Name }}</a></td>
+                    <td>
+                        {{ vm.first.NumberOfPets }}
+                        <button class="delButton" ng-disabled="!vm.first.Id"
+                                ng-click="vm.DeleteOwner(vm.first.Id)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="owner" href="#!/{{vm.second.Id}}/pets"> {{ vm.second.Name }}</a></td>
+                    <td>
+                        {{ vm.second.NumberOfPets }}
+                        <button class="delButton" ng-disabled="!vm.second.Id" 
+                                ng-click="vm.DeleteOwner(vm.second.Id)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="owner" href="#!/{{vm.third.Id}}/pets"> {{ vm.third.Name }}</a></td>
+                    <td>
+                        {{ vm.third.NumberOfPets }}
+                        <button class="delButton" ng-disabled="!vm.third.Id" 
+                                ng-click="vm.DeleteOwner(vm.third.Id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pagination class="text-center"></pagination>
+        <div class="text-center"><span class="text-danger">{{ vm.message }}</span></div>
+    </div>
+
+    
+
+
+</div>
+<style>
+    .delButton {
+        float: right;
+    }
+    thead{
+        background-color: lightgray;
+    }
+    .owner{
+        color:black;
+        cursor: pointer;
+    }
+</style>

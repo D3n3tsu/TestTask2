@@ -1,0 +1,60 @@
+﻿<div class="text-center">
+    <h1>Pets</h1>
+    <div  class="text-left  col-sm-offset-3 col-md-offset-3 col-lg-offset-3 text-left" >
+        <a href="/#!/owners">Back to all users</a>
+    </div>
+    <div>
+        <input ng-model="vm.newPet" placeholder="Enter Pet's Name" />
+        <button ng-disabled="!vm.newPet" ng-click="vm.AddPet()">Add</button>
+    </div>
+    <hr />
+
+
+    <div class="col-md-6 col-sm-6 col-lg-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 text-left">
+        <div>Total count: {{ vm.totalCount }}</div>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ vm.first.Name }}
+                        <button class="delButton"  ng-disabled="!vm.first.Id" 
+                                ng-click="vm.DeletePet(vm.first.Id)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td> {{ vm.second.Name }} 
+                        <button class="delButton" ng-disabled="!vm.second.Id" 
+                                ng-click="vm.DeletePet(vm.second.Id)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td> {{ vm.third.Name }} 
+                        <button class="delButton" ng-disabled="!vm.third.Id" 
+                                ng-click="vm.DeletePet(vm.third.Id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pagination class="text-center"></pagination>
+        <div class="text-center"><span class="text-danger">{{ vm.message }}</span></div>
+    </div>
+
+
+
+    
+</div>
+<style>
+    .delButton {
+        float: right;
+    }
+
+    thead {
+        background-color: lightgray;
+    }
+
+</style>
